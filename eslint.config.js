@@ -1,5 +1,4 @@
 // @ts-check
-// @ts-check
 const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
@@ -81,7 +80,7 @@ module.exports = tseslint.config(
           comments: 160,
         },
       ],
-      'max-lines': ['error', 400], // my favorite rule to keep files small
+      'max-lines': ['error', 400],
       'no-bitwise': 'error',
       'no-console': 'off',
       'no-new-wrappers': 'error',
@@ -133,5 +132,5 @@ module.exports = tseslint.config(
       '@angular-eslint/template/prefer-self-closing-tags': 'warn',
       '@angular-eslint/template/use-track-by-function': 'warn',
     },
-  },
+  }
 );
