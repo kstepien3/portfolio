@@ -5,9 +5,8 @@ on:
     branches: [master, develop]
 
 env:
-  NODE_VERSION: 18
+  NODE_VERSION: 22
   RETENTION_DAYS: 30
-  PNPM_VERSION: 8
 
 jobs:
   install:
@@ -15,15 +14,18 @@ jobs:
     outputs:
       cache-key: ${{ steps.cache-key.outputs.cache-key }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
       - id: cache-key
-        run: echo "::set-output name=cache-key::$(echo ${{ runner.os }}-node-${{ env.NODE_VERSION }}-npm-cache-$(sha256sum pnpm-lock.yaml | cut -d' ' -f1))"
+        run: |
+          CACHE_KEY="${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-cache-$(sha256sum pnpm-lock.yaml | cut -d' ' -f1)"
+          echo "cache-key=$CACHE_KEY" >> $GITHUB_OUTPUT
       - uses: actions/cache@v4
         id: pnpm-cache
         with:
@@ -32,18 +34,18 @@ jobs:
             ~/.pnpm-store
           key: ${{ steps.cache-key.outputs.cache-key }}
           restore-keys: |
-            ${{ runner.os }}-node-${{ env.NODE_VERSION }}-npm-cache-
+            ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-cache-
       - run: pnpm install --frozen-lockfile
 
   lint:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
       - uses: actions/cache@v4
@@ -64,11 +66,11 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
       - uses: actions/cache@v4
@@ -114,11 +116,11 @@ jobs:
     needs: [install, lint, test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
       - uses: actions/cache@v4
