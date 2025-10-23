@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/theme';
+@use 'styles/abstracts';
+
+/* Global CSS */
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+}
+
+main {
+  background: var(--bg);
+}
+
+h1 {
+  font: var(--h1);
+  color: var(--text);
+}
+
+h2 {
+  font: var(--h2);
+  color: var(--text);
+}
+
+h3 {
+  font: var(--h3);
+  color: var(--text);
+}
+
+p {
+  font: var(--p);
+  color: var(--text);
+}
+
+.text-dim {
+  color: var(--text-dim);
+}
+
+.shadow-s {
+  box-shadow: var(--shadow-s);
+}
+
+.shadow-m {
+  box-shadow: var(--shadow-m);
+}
+
+.shadow-l {
+  box-shadow: var(--shadow-l);
+}
