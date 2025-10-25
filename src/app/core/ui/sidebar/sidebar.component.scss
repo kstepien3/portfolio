@@ -1,0 +1,20 @@
+// Globals
+$transition-duration: var(--zen-transition-duration, 0.4s);
+$outline: var(--zen-outline, 2px solid hsl(200deg 100% 50% / 50%));
+
+:host {
+  --zen-button-padding: 0.5rem 1rem;
+  --zen-button-bg-color: hsl(0deg 0% 0%);
+  --zen-button-bg-color-hover: hsl(0deg 0% 20%);
+  --zen-button-color: hsl(0deg 0% 100%);
+  --zen-button-shadow: 0 2px 4px hsl(0deg 0% 0% / 10%);
+  --zen-button-border-radius: var(--border-radius-sm);
+}
+
+/* stylelint-disable-next-line no-duplicate-selectors -- separate variables and styles */
+:host {
+  display: block;
+  height: 300px;
+  border: 1px dotted lightgray;
+  max-width: fit-content;
+}

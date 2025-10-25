@@ -1,0 +1,15 @@
+<nav>
+  <zen-sidebar>
+    <header sidebar-header>
+      <zen-avatar [alt]="'Author'" [src]="'https://github.com/kstepien3.png'" />
+    </header>
+
+    test
+
+    <div sidebar-footer>footer</div>
+  </zen-sidebar>
+
+  <button variant="ghost" zen-btn (click)="toggle()">
+    <zen-icon [icon]="opened() ? 'SidebarLeft01Icon' : 'SidebarLeftIcon'" />
+  </button>
+</nav>

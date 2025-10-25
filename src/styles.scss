@@ -1,14 +1,33 @@
 @use 'styles/theme';
 @use 'styles/abstracts';
+@use 'styles/utilities';
+
+/* Reset styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img, picture,svg, video {
+  display: block;
+  max-width: 100%;
+}
 
 /* Global CSS */
 body {
   background: var(--bg-dark);
   color: var(--text);
+  margin: var(--space-2);
 }
 
 main {
   background: var(--bg);
+  border-radius: var(--border-radius-xl);
 }
 
 h1 {
@@ -29,20 +48,4 @@ h3 {
 p {
   font: var(--p);
   color: var(--text);
-}
-
-.text-dim {
-  color: var(--text-dim);
-}
-
-.shadow-s {
-  box-shadow: var(--shadow-s);
-}
-
-.shadow-m {
-  box-shadow: var(--shadow-m);
-}
-
-.shadow-l {
-  box-shadow: var(--shadow-l);
 }
