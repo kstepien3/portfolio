@@ -1,14 +1,16 @@
 # Agent Guidelines for Portfolio Project
 
 ## Commands
-- **Build**: `ng build` or `npm run build`
-- **Dev server**: `ng serve` or `npm start`
-- **Test all**: `ng test` or `npm run test`
-- **Test single**: `ng test --include="**/file.spec.ts"`
-- **Watch mode**: `ng build --watch --configuration development` or `npm run watch`
-- **SSR serve**: `npm run serve:ssr:portfolio`
+
+- **Build**: `pnpm run build`
+- **Dev server**: `pnpm start`
+- **Test all**: `pnpm run test:once`
+- **Test by path**: `pnpm run test:once --include="**/file.spec.ts"`
+- **Watch mode**: `pnpm run watch`
+- **SSR serve**: `pnpm run serve:ssr:portfolio`
 
 ## Code Style
+
 - **TypeScript**: Strict mode enabled, prefer type inference, avoid `any`, use `unknown` for uncertain types
 - **Angular**: Standalone components (default, don't set `standalone: true`), signals for state, OnPush change detection
 - **Formatting**: Prettier (printWidth: 100, singleQuote: true), 2-space indentation
