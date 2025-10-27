@@ -1,0 +1,45 @@
+// Globals
+$transition-duration: var(--zen-transition-duration, 0.4s);
+$outline: var(--zen-outline, 2px solid hsl(200deg 100% 50% / 50%));
+
+:host {
+  --zen-button-padding: 0.5rem 1rem;
+  --zen-button-bg-color: hsl(0deg 0% 0%);
+  --zen-button-bg-color-hover: hsl(0deg 0% 20%);
+  --zen-button-color: hsl(0deg 0% 100%);
+  --zen-button-shadow: 0 2px 4px hsl(0deg 0% 0% / 10%);
+  --zen-button-border-radius: var(--border-radius-sm);
+}
+
+/* stylelint-disable-next-line no-duplicate-selectors -- separate variables and styles */
+:host {
+  display: block;
+  height: 100dvh;
+  max-height: 100dvh;
+  width: 280px;
+  max-width: 90vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border: 1px dotted gray;
+  box-shadow: 2px 0 8px rgb(0 0 0 / 10%);
+
+  // Mobile: hidden by default
+  transform: translateX(-100%);
+  transition: transform $transition-duration ease;
+}
+
+// Desktop: visible by default (unless explicitly closed)
+@media (width >= 768px) {
+  :host:not([opened='false']) {
+    transform: translateX(0);
+  }
+}
+
+// Mobile: show when explicitly opened
+@media (width <= 767px) {
+  :host[data-opened='true'] {
+    transform: translateX(0);
+  }
+}

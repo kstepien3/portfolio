@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
+import { Nav } from './core/components/nav/nav';
+
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [Nav],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
